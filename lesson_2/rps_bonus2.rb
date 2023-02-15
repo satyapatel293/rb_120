@@ -35,21 +35,43 @@ class Move
   end
 end
 
-class Player
-  attr_accessor :move, :name, :score
+class Score
+  attr_accessor :player, :computer
 
   def initialize
-    @score = 0
+    @player = 0
+    @computer = 0
+  end 
+
+  def increment_player
+    self.player += 1 
+  end 
+
+  def increment_computer 
+    self.computer += 1 
+  end 
+
+  def reset
+    self.player = 0
+    self.computer = 0
+  end 
+
+  def winner? 
+    if computer == 3 
+      return :computer
+    elsif player == 3
+      return :player
+    end 
+  end 
+end 
+
+
+class Player
+  attr_accessor :move, :name
+
+  def initialize
     set_name
   end
-
-  def winner?
-    score >= 3
-  end
-
-  def reset_score
-    @score = 0 
-  end 
 end
 
 class Human < Player
@@ -88,12 +110,12 @@ end
 
 # Game Orchestration Engine
 class RPSGame
-  attr_accessor :human, :computer
+  attr_accessor :human, :computer, :score
 
   def initialize
-    system('clear')
     @human = Human.new
     @computer = Computer.new
+    @score = Score.new
   end
 
   def display_welcome_message
@@ -107,16 +129,16 @@ class RPSGame
 
   def display_screen
     system('clear')
-    puts "#{human.name}: #{human.score} || #{computer.name}: #{computer.score}"
     puts "#{human.name} chose #{human.move} || #{computer.name} chose #{computer.move}."
+    puts "#{human.name}: #{score.player} || #{computer.name}: #{score.computer}."
     display_round
   end
 
   def update_score
     if human.move > computer.move
-      human.score += 1
+      score.increment_player
     elsif human.move < computer.move
-      computer.score += 1
+      score.increment_computer
     end
   end
 
@@ -127,23 +149,6 @@ class RPSGame
       puts "#{computer.name} won round!"
     else
       puts "It's a tie!"
-    end
-  end
-
-  def end_game
-    if (human.winner? || computer.winner?)
-      display_winner
-      [human, computer].each { |player| player.reset_score }
-    end
-  end
-
-  def display_winner
-    system('clear')
-    puts "#{human.name}: #{human.score} || #{computer.name}: #{computer.score}"
-    if human.winner?
-      puts "#{human.name.upcase} WON THE GAME!!"
-    elsif computer.winner?
-      puts "#{computer.name.upcase} WON THE GAME!!"
     end
   end
 
@@ -160,23 +165,20 @@ class RPSGame
     return true if answer.downcase == 'y'
   end
 
-  def round 
-    human.choose
-    computer.choose
-    update_score
-    display_screen
-  end
-
   def play
     display_welcome_message
 
-    loop do # game loop
-      loop do # round loop
-        round
-        break if end_game
+    loop do 
+      loop do
+        human.choose
+        computer.choose
+        update_score
+        display_screen
+        break if score.winner?
       end
       break unless play_again?
     end 
+
     display_goodbye_message
   end
 end
