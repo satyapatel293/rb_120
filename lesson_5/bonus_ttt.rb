@@ -1,49 +1,46 @@
-require 'pry'
-
 module Banners
-BANNER = <<~BNR
-████████╗██╗ ██████╗████████╗ █████╗  ██████╗████████╗ ██████╗ ███████╗
-╚══██╔══╝██║██╔════╝╚══██╔══╝██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗██╔════╝
-   ██║   ██║██║        ██║   ███████║██║        ██║   ██║   ██║█████╗  
-   ██║   ██║██║        ██║   ██╔══██║██║        ██║   ██║   ██║██╔══╝  
-   ██║   ██║╚██████╗   ██║   ██║  ██║╚██████╗   ██║   ╚██████╔╝███████╗
-   ╚═╝   ╚═╝ ╚═════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚══════╝ 
-BNR
+  BANNER = <<~BNR
+  ████████╗██╗ ██████╗████████╗ █████╗  ██████╗████████╗ ██████╗ ███████╗
+  ╚══██╔══╝██║██╔════╝╚══██╔══╝██╔══██╗██╔════╝╚══██╔══╝██╔═══██╗██╔════╝
+    ██║   ██║██║        ██║   ███████║██║        ██║   ██║   ██║█████╗  
+    ██║   ██║██║        ██║   ██╔══██║██║        ██║   ██║   ██║██╔══╝  
+    ██║   ██║╚██████╗   ██║   ██║  ██║╚██████╗   ██║   ╚██████╔╝███████╗
+    ╚═╝   ╚═╝ ╚═════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝   ╚═╝    ╚═════╝ ╚══════╝ 
+  BNR
 
-WIN_COMPUTER = <<~COM
-██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     
-██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    
-██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    
-██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    
-╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    
- ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝    
-                                                                          
-            ██╗    ██╗██╗███╗   ██╗███████╗██╗██╗██╗██╗██╗                
-            ██║    ██║██║████╗  ██║██╔════╝██║██║██║██║██║                
-            ██║ █╗ ██║██║██╔██╗ ██║███████╗██║██║██║██║██║                
-            ██║███╗██║██║██║╚██╗██║╚════██║╚═╝╚═╝╚═╝╚═╝╚═╝                
-            ╚███╔███╔╝██║██║ ╚████║███████║██╗██╗██╗██╗██╗                
-             ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═╝╚═╝╚═╝╚═╝                
+  WIN_COMPUTER = <<~COM
+  ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗███████╗██████╗     
+  ██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗    
+  ██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   █████╗  ██████╔╝    
+  ██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██╔══╝  ██╔══██╗    
+  ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ███████╗██║  ██║    
+  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝    
+                                                                            
+              ██╗    ██╗██╗███╗   ██╗███████╗██╗██╗██╗██╗██╗                
+              ██║    ██║██║████╗  ██║██╔════╝██║██║██║██║██║                
+              ██║ █╗ ██║██║██╔██╗ ██║███████╗██║██║██║██║██║                
+              ██║███╗██║██║██║╚██╗██║╚════██║╚═╝╚═╝╚═╝╚═╝╚═╝                
+              ╚███╔███╔╝██║██║ ╚████║███████║██╗██╗██╗██╗██╗                
+              ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═╝╚═╝╚═╝╚═╝                
 
-COM
+  COM
 
-WIN_PLAYER = <<~PLR
-  ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗     
-  ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗    
-  ██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝    
-  ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗    
-  ██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║    
-  ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝    
-                                                      
-      ██╗    ██╗██╗███╗   ██╗███████╗██╗██╗██╗         
-      ██║    ██║██║████╗  ██║██╔════╝██║██║██║         
-      ██║ █╗ ██║██║██╔██╗ ██║███████╗██║██║██║         
-      ██║███╗██║██║██║╚██╗██║╚════██║╚═╝╚═╝╚═╝         
-      ╚███╔███╔╝██║██║ ╚████║███████║██╗██╗██╗         
-       ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═╝╚═╝         
+  WIN_PLAYER = <<~PLR
+    ██████╗ ██╗      █████╗ ██╗   ██╗███████╗██████╗     
+    ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝██╔════╝██╔══██╗    
+    ██████╔╝██║     ███████║ ╚████╔╝ █████╗  ██████╔╝    
+    ██╔═══╝ ██║     ██╔══██║  ╚██╔╝  ██╔══╝  ██╔══██╗    
+    ██║     ███████╗██║  ██║   ██║   ███████╗██║  ██║    
+    ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝    
+                                                        
+        ██╗    ██╗██╗███╗   ██╗███████╗██╗██╗██╗         
+        ██║    ██║██║████╗  ██║██╔════╝██║██║██║         
+        ██║ █╗ ██║██║██╔██╗ ██║███████╗██║██║██║         
+        ██║███╗██║██║██║╚██╗██║╚════██║╚═╝╚═╝╚═╝         
+        ╚███╔███╔╝██║██║ ╚████║███████║██╗██╗██╗         
+        ╚══╝╚══╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝╚═╝╚═╝         
 
-PLR
-  
+  PLR
 end
 
 class Board
@@ -92,8 +89,8 @@ class Board
     move = nil
     WINNIG_LINES.each do |line|
       squares_on_line = squares.values_at(*line)
-      if squares_on_line.count { |square| square.marker == player_marker} == 2 &&
-         squares_on_line.count(&:unmarked?) == 1
+      if squares_on_line.count { |square| square.marker == player_marker } == 2 && 
+        squares_on_line.count(&:unmarked?) == 1
         move = unmarked_keys.select { |v| line.include?(v) }.first
       end
     end
@@ -102,9 +99,9 @@ class Board
 
   def center_open?
     squares[5].unmarked?
-  end 
+  end
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize/MethodLength
   # rubocop:disable Metrics/MethodLength
   def draw
     puts "     |     |"
@@ -159,13 +156,17 @@ class Player
 
   def initialize(marker, name)
     @marker = marker
-    @name = name 
-    @score = 0 
+    @name = name
+    @score = 0
   end
 
   def winner?
-    @score == 2
-  end 
+    @score == 5
+  end
+
+  def point
+    self.score += 1
+  end
 end
 
 class TTTGame
@@ -183,59 +184,60 @@ class TTTGame
     @round = nil
   end
 
-  def get_name 
+  def name?
     puts 'Whats your name?'
     name = nil
-    loop do 
+    loop do
       name = gets.chomp
       break unless name.empty?
       puts 'Please enter a name'
     end
     @name = name.capitalize
-  end 
+  end
 
   def computer_name
     ['Hal', 'Skynet', "Chappie", 'Wall-E', 'Eva'].sample
-  end 
+  end
 
-  def who_goes_first? 
+  def who_goes_first?
     puts "Who goes first? (1) #{human.name} or (2) #{computer.name}"
     answer = nil
-    loop do 
-      answer = gets.chomp 
+    loop do
+      answer = gets.chomp
       break if ['1', '2'].include?(answer)
       puts "Please enter 1 for #{human.name} or 2 for #{computer.name}"
-    end 
+    end
     answer == '1' ? human.marker : computer.marker
-  end 
+  end
 
-  def set_peices 
+  def set_peices
     peice = nil
-    loop do 
+    loop do
       puts "Please choose a piece 'X' or 'O'"
       peice = gets.chomp.upcase
       break if ['X', 'O'].include?(peice)
       puts 'Invalid choice..'
-    end 
+    end
+
     if peice == 'X'
       peices = ["X", "O"]
-    else 
+    else
       peices = ["O", "X"]
-    end 
+    end
 
     peices
   end
 
   def set_game
-    name = get_name
+    name = name?
     peices = set_peices
     @human = Player.new(peices[0], name)
     @computer = Player.new(peices[1], computer_name)
     @first_to_move = who_goes_first?
     @current_marker = @first_to_move
-    @round = 0 
-  end 
-  
+    @round = 0
+  end
+
   def play
     clear
     display_welcome_message
@@ -247,16 +249,16 @@ class TTTGame
   private
 
   def main_game
-    loop do 
+    loop do
       play_rounds
       display_winner
       reset_score
       break unless play_again?
       display_play_again_message
-    end 
+    end
   end
 
-  def play_rounds 
+  def play_rounds
     loop do
       display_board
       player_move
@@ -265,7 +267,7 @@ class TTTGame
       reset_round
       break if game_over?
     end
-  end 
+  end
 
   def player_move
     loop do
@@ -278,44 +280,43 @@ class TTTGame
   def display_winner
     if computer.winner?
       puts WIN_COMPUTER
-    else 
+    else
       puts WIN_PLAYER
-    end 
-  end 
+    end
+  end
 
-  
   def update_display
     case board.winning_marker
     when human.marker
-      human.score += 1 
+      human.point
     when computer.marker
-      computer.score += 1
+      computer.point
     end
-    self.round += 1 
-  end 
+    self.round += 1
+  end
 
   def game_over?
     @computer.winner? || @human.winner?
-  end 
+  end
 
   def display_welcome_message
-  puts <<~MSG
+    puts <<~MSG
 
-  #{BANNER}                     
-  
-               First player to win 5 rounds wins the game
-      Each square is associated with a number from 1-9 like this.. 
-
-
-                              1 | 2 | 3
-                              ---------
-                              4 | 5 | 6
-                              ---------
-                              7 | 8 | 9
+    #{BANNER}                     
+    
+                First player to win 5 rounds wins the game
+        Each square is associated with a number from 1-9 like this.. 
 
 
-  MSG
-end
+                                1 | 2 | 3
+                                ---------
+                                4 | 5 | 6
+                                ---------
+                                7 | 8 | 9
+
+
+    MSG
+  end
 
   def display_goodbye_message
     puts "Thanks for playing Tic Tac Toe! Goodbye!"
@@ -343,21 +344,16 @@ end
       /_____________________________________\\
   MSG
   end
-  #   puts "#{human.name} is '#{human.marker}' : #{computer.name} is '#{computer.marker}'"
-  #   puts "Score #{human.name}: #{human.score} || #{computer.name}: #{computer.score}"
-  #   board.draw
-  #   puts ""
-  # end
 
   def standardize_name(player)
     name_and_score = "#{player.name} #{player.score}"
 
-    if name_and_score.size > 14 
+    if name_and_score.size > 14
       "#{player.name[0..8]}.. #{player.score}"
     else
       name_and_score.ljust(13)
-    end 
-  end 
+    end
+  end
 
   def clear_screen_and_display_board
     clear
@@ -386,22 +382,21 @@ end
       array.join(delimiter)
     end
   end
-  
+
   def computer_moves
     attacking_move = board.detect_near_win(computer.marker)
     defensive_move = board.detect_near_win(human.marker)
-  
-    open_square = if attacking_move
-                  attacking_move
-                elsif defensive_move
-                  defensive_move
-                elsif board.center_open?
-                  5
-                else
-                  board.unmarked_keys.sample
-                end
 
-    # binding.pry
+    open_square = if attacking_move
+                    attacking_move
+                  elsif defensive_move
+                    defensive_move
+                  elsif board.center_open?
+                    5
+                  else
+                    board.unmarked_keys.sample
+                  end
+
     board[open_square] = computer.marker
   end
 
@@ -418,7 +413,7 @@ end
 
     sleep(3)
   end
-    
+
   def play_again?
     answer = nil
     loop do
@@ -442,9 +437,9 @@ end
   end
 
   def reset_score
-    human.score = 0 
+    human.score = 0
     computer.score = 0
-  end 
+  end
 
   def display_play_again_message
     puts "Let's play again!"
@@ -462,7 +457,7 @@ end
   end
 
   def human_turn?
-    self.current_marker == human.marker
+    current_marker == human.marker
   end
 end
 
