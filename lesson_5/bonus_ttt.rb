@@ -404,14 +404,15 @@ class TTTGame
     clear_screen_and_display_board
     case board.winning_marker
     when human.marker
-      puts "You won round!"
+      puts "#{human.name} won the round!"
     when computer.marker
-      puts 'Computer won round!'
+      puts "#{computer.name} won the round!"
     else
       puts "It's a tie!"
     end
 
-    sleep(3)
+    puts 'Press enter for next round...'
+    gets
   end
 
   def play_again?
