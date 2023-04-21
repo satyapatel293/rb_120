@@ -37,16 +37,9 @@ game
   @dealer 
 
   - deal 
-  - 
-
-
-
-
+  -
 
 =end 
-
-
-
 
 class Player 
   attr_accessor :hand, :total, :busted
